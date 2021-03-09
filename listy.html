@@ -33,9 +33,9 @@
 	<input id= "inpList" type = "text"></input>
 	
 		<div class="flex-container" id="target">
-		  <div class= "listy">row item 1</div>   
-		  <div class= "listy">row item 2</div>  
-		  <div class= "listy">row item 3</div>  
+		  <div class= "listy">item 1</div>   
+		  <div class= "listy">item 2</div>  
+		  <div class= "listy">item 3</div>  
 		</div>
 	
 	<p> Press the button to create an new element of type div and then add it to the container.
@@ -52,6 +52,29 @@
 		element.className = "listy"
 
 		/* add it to the container */
+		var listyItems = document.getElementsByClassName("listy")
+		var check = 0
+
+		if(listyItems.length>4){
+
+			for ( let item of listyItems)
+			{
+				console.log(item.innerHTML)
+				if(item.innerHTML === document.getElementById("inpList").value)
+				{
+					item.remove();
+					console.log("We are getting rid of duplicates.");
+					check=1;
+					break;
+				}
+			}
+			if(check==0) {
+					listyItems[0].remove();
+					console.log("We get rid of the first item.");
+				}
+
+		}
+
 		document.getElementById('target').appendChild(element)
 		
 	}
