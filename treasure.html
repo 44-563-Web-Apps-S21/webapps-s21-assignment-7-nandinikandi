@@ -21,9 +21,10 @@
             treasure.</p>
         <p id="clicks" style="background-color:rgb(55, 223, 223);color: rgb(153, 35, 35);">Number of clicks is zero.</p>
         <p id="distance" style="background: rgb(181, 195, 221);color: darkmagenta;">Distance is unknown.</p>
+        <button class="btn btn-success" onclick="newGame()">New Game</button>
 
     </div>
-
+    <br>
     <div class='container'>
 
         <div class='row'>
@@ -111,7 +112,23 @@
             "img20", "img21", "img22", "img23", "img24"];
 
         var clickCount = 0;
-        var treasureLocation = 18;
+        var treasureLocation = getRandomIntInclusive(0, 24);
+        console.log(treasureLocation);
+
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+        }
+
+        function newGame() {
+            var clickCount = 0;
+            var treasureLocation = getRandomIntInclusive(0, 24);
+            console.log(treasureLocation);
+            document.getElementById("clicks").innerHTML = "Number of clicks is " + clickCount + ".";
+
+            document.getElementById("distance").innerHTML = "Distance is unknown.";
+        }
 
         function makeGuess(position) {
 
@@ -147,23 +164,23 @@
 
             for (var i = 0; i < 5; i++) {
                 for (var j = 0; j < 5; j++)
-                if (a[i][j] == pos1) {
-                    x1 = i;
-                    y1 = j;
-                    break;
-                }
+                    if (a[i][j] == pos1) {
+                        x1 = i;
+                        y1 = j;
+                        break;
+                    }
             }
 
             for (var i = 0; i < 5; i++) {
                 for (var j = 0; j < 5; j++)
-                if (a[i][j] == pos2) {
-                    x2 = i;
-                    y2 = j;
-                    break;
-                }
+                    if (a[i][j] == pos2) {
+                        x2 = i;
+                        y2 = j;
+                        break;
+                    }
             }
 
-            var dis = Math.abs(x2-x1) + Math.abs(y2-y1);
+            var dis = Math.abs(x2 - x1) + Math.abs(y2 - y1);
             return dis;
 
         }
